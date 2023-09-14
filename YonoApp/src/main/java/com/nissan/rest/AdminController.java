@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nissan.common.APIResponse;
+import com.nissan.common.Validation;
 import com.nissan.model.Customer;
 import com.nissan.service.IAdminService;
 import com.nissan.service.ICustomerService;
@@ -25,6 +26,8 @@ import com.nissan.util.JwtUtilCustomer;
 @RestController // combination of controller and configuration annotations
 @RequestMapping("/admin")
 public class AdminController {
+	
+	Validation v=new Validation();
 	@Autowired
 	private IAdminService adminService;
 	
@@ -54,7 +57,7 @@ public class AdminController {
 		customer.setAccountNo();
 		customer.setATMPin();
 		if(adminService.saveCustomer(customer)==null) {
-			apiresponse.setData("Name can have only alphabets");
+			apiresponse.setData("Invalid entry");
 			apiresponse.setStatus(500);
 			apiresponse.setError("Invalid name");
 			
@@ -65,6 +68,7 @@ public class AdminController {
 		apiresponse.setStatus(200);
 		
 		return ResponseEntity.status(apiresponse.getStatus()).body(apiresponse);
+		
 	}
 
 	// update

@@ -31,7 +31,7 @@ public class AdminServiceImplementation implements IAdminService {
 
 	@Override
 	public Customer saveCustomer(Customer customer) {
-		if (validation.isNameValid(customer.getCustomerName())) {
+		if(validation.isValidName(customer.getCustomerName())&&validation.isValidMobileValid(String.valueOf(customer.getMobileNumber()))) {
 			return adminRepo.save(customer);
 		}
 		return null;
