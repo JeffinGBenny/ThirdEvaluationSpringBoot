@@ -46,7 +46,7 @@ public class AdminServiceImplementation implements IAdminService {
 	@Transactional
 	@Override
 	public void deleteCustomer(int accountNumber) {
-		adminRepo.deleteCustomer(accountNumber);
+		adminRepo.deleteCustomer(Integer.toString(accountNumber));
 
 	}
 

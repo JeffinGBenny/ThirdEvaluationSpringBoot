@@ -10,8 +10,8 @@ import com.nissan.model.Customer;
 @Repository
 public interface IAdminRepository extends CrudRepository<Customer, String> {
 	@Modifying
-	@Query("UPDATE com.nissan.model.Customer SET isActive=0 WHERE accountNumber like ?1")
-	public void deleteCustomer(long accountNumber);
+	@Query("UPDATE com.nissan.model.Customer SET isActive=0 WHERE accountNo like ?1")
+	public void deleteCustomer(String accountNumber);
 	//already has the basic crud operations
 	
 	//search by name

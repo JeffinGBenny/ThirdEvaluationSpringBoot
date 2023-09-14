@@ -51,6 +51,8 @@ public class AdminController {
 	@PostMapping("/customer")
 	public ResponseEntity<APIResponse> addCustomer(@RequestBody Customer customer,@RequestHeader(value="authorization",defaultValue="")String auth)throws AccessDeniedException {
 		jwtUtil.verify(auth);
+		customer.setAccountNo();
+		customer.setATMPin();
 		if(adminService.saveCustomer(customer)==null) {
 			apiresponse.setData("Name can have only alphabets");
 			apiresponse.setStatus(500);
@@ -67,17 +69,25 @@ public class AdminController {
 
 	// update
 	@PutMapping("/customer")
-	public void updateCustomer(@RequestBody Customer customer,@RequestHeader(value="authorization",defaultValue="")String auth)throws AccessDeniedException {
+	public ResponseEntity<APIResponse> updateCustomer(@RequestBody Customer customer,@RequestHeader(value="authorization",defaultValue="")String auth)throws AccessDeniedException {
 		jwtUtil.verify(auth);
 		adminService.saveCustomer(customer);
+		apiresponse.setData("Customer updated successfully");
+		apiresponse.setStatus(200);
+		
+		return ResponseEntity.status(apiresponse.getStatus()).body(apiresponse);
 
 	}
 
 	// disable or delete employee
 	@DeleteMapping("/customer/{accountNo}")
-	public void deleteCustomer(@PathVariable int accountNo,@RequestHeader(value="authorization",defaultValue="")String auth) throws AccessDeniedException{
+	public ResponseEntity<APIResponse> deleteCustomer(@PathVariable int accountNo,@RequestHeader(value="authorization",defaultValue="")String auth) throws AccessDeniedException{
 		jwtUtil.verify(auth);
 		adminService.deleteCustomer(accountNo);
+		apiresponse.setData("Customer deleted successfully");
+		apiresponse.setStatus(200);
+		
+		return ResponseEntity.status(apiresponse.getStatus()).body(apiresponse);
 	}
 
 	

@@ -32,18 +32,22 @@ public interface ICustomerRepository extends CrudRepository<Customer, Integer> {
 	public Long showBalance(long accountNumber);*/
 	
 	@Modifying
-	@Query("UPDATE com.nissan.model.Customer SET balance=balance+?2 WHERE accountNumber like ?1")
-	public void deposit(long accountNumber,long amount);
+	@Query("UPDATE com.nissan.model.Customer SET balance=balance+?2 WHERE accountNo like ?1")
+	public void deposit(String accountNumber,long amount);
 	
-	@Modifying
+	
 	@Query("SELECT balance FROM com.nissan.model.Customer  WHERE accountNo like ?1")
-	public void showBalance(String accountNumber);
+	public long showBalance(String accountNumber);
 	
 	@Modifying
-	@Query("UPDATE com.nissan.model.Customer SET balance=balance-?2 WHERE accountNumber like ?1")
-	public void withdraw(long accountNumber,long amount);
+	@Query("UPDATE com.nissan.model.Customer SET balance=balance-?2 WHERE accountNo like ?1")
+	public void withdraw(String accountNumber,long amount);
 	
 	@Modifying
-	@Query("SELECT balance FROM com.nissan.model.Customer  WHERE accountNumber like ?1")
-	public Long transfer(String accountNumber);
+	@Query("UPDATE com.nissan.model.Customer SET balance=balance+?2 WHERE accountNo like ?1")
+	public Long transferDeposit(String receiverAccountNumber,long amount);
+	
+	@Modifying
+	@Query("UPDATE com.nissan.model.Customer SET balance=balance-?2 WHERE accountNo like ?1")
+	public Long transferWithdraw(String senderAccountNumber,long amount);
 }

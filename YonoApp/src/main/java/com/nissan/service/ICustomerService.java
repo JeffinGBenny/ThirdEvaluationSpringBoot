@@ -27,10 +27,14 @@ public interface ICustomerService {
 	// inner join list
 	//public List<EmployeeDeptDto> getAllDtoEmployees();*/
 	
-	public void showBalance(String accountNumber);
+	public long showBalance(String accountNumber);
 
-	void deposit(long accountNumber, long amount);
+	void deposit(String accountNumber, long amount);
 
-	void withdraw(long accountNumber, long amount);
+	void withdraw(String accountNumber, long amount);
+
+	void transferWithdraw(String accountNumber, long amount);
+
+	void transferDeposit(String accountNumber, long amount);
 
 }

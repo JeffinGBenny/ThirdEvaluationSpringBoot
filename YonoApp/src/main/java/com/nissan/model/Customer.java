@@ -45,7 +45,7 @@ public class Customer {
 		return accountNo;
 	}
 
-	public void setAccountNo(String accountNo) {
+	public void setAccountNo() {
 		long min = 100000000L; // Smallest 9-digit number
         long max = 999999999L; // Largest 9-digit number
         Random random = new Random();
@@ -106,10 +106,10 @@ public class Customer {
 		return ATMPin;
 	}
 
-	public void setATMPin(Integer aTMPin) {
+	public void setATMPin() {
 		Random random = new Random();
-		aTMPin= random.nextInt(1000);
-		ATMPin = aTMPin;
+		int aTMPin= random.nextInt(1000);
+		this.ATMPin = 1000+aTMPin;
 	}
 	
 	

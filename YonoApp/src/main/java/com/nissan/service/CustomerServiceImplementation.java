@@ -49,23 +49,37 @@ public class CustomerServiceImplementation implements ICustomerService {
 	
 	@Transactional
 	@Override
-	public void showBalance(String accountNumber) {
+	public long showBalance(String accountNumber) {
 		// TODO Auto-generated method stub
-		 customerRepo.showBalance(accountNumber);
+		 return customerRepo.showBalance(accountNumber);
 	}
 	
 	@Transactional
 	@Override
-	public void deposit(long accountNumber,long amount) {
+	public void deposit(String accountNumber,long amount) {
 		// TODO Auto-generated method stub
 		 customerRepo.deposit(accountNumber,amount);
 	}
 	
 	@Transactional
 	@Override
-	public void withdraw(long accountNumber,long amount) {
+	public void withdraw(String accountNumber,long amount) {
 		// TODO Auto-generated method stub
-		 customerRepo.deposit(accountNumber,amount);
+		 customerRepo.withdraw(accountNumber,amount);
+	}
+	
+	@Transactional
+	@Override
+	public void transferWithdraw(String accountNumber,long amount) {
+		// TODO Auto-generated method stub
+		 customerRepo.withdraw(accountNumber,amount);
+	}
+	
+	@Transactional
+	@Override
+	public void transferDeposit(String accountNumber,long amount) {
+		// TODO Auto-generated method stub
+		 customerRepo.withdraw(accountNumber,amount);
 	}
 
 }
